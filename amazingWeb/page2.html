@@ -1,0 +1,37 @@
+<!-- hangman-style.html (Новая страница) -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игра Виселица (Hangman)</title>
+    <link rel="stylesheet" href="hangman-style.css">
+</head>
+<body>
+
+
+    <h1>HANGED MAN</h1>
+
+    <a href="index.html" class="back-link">← Назад на главную</a>
+
+
+    <div class="game-container">
+        <h1>Виселица</h1>
+        <p>Угадайте слово по теме: <strong>Мультфильмы</strong></p>
+        <img class="gallows-img" src="gif_files\Light Fury and Toothless cuddle.gif" alt="Виселица">
+        <img class="gallows-img" id="gallows" src="hg_media\preview.png" alt="Виселица">
+
+        <div class="word-display" id="wordDisplay"></div>
+        <div class="message" id="message"></div>
+        <div class="keyboard" id="keyboard"></div>
+        
+        <button class="btn-restart" id="btnRestart" onclick="initGame()">Играть снова</button>
+    </div>
+
+
+
+
+    <script src="hangman-game.js"></script>
+
+</body>
+</html>
