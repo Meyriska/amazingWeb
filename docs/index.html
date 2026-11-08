@@ -32,10 +32,18 @@
             <label>username:</label>
             <input id="text_input">
             <button id="submit" class="clck">принять</button>
+            <p id="p2"></p>
         </div>
-    </div>
+    </div><br><br><br><br>
 
-    <br><h1 id="H2">Вечер в хату</h1>
+    <div class="row-container">
+        <img src="gif_files\stitch_with_toy.gif" alt="Ститч" width="150">
+        <img src="gif_files\stitch_and_toy.gif" alt="Ститч" width="150">
+        <h1 id="H2">Вечер в хату</h1>
+        <img src="gif_files\stitch_and_toy.gif" alt="Ститч" width="150">
+        <img src="gif_files\stitch_with_toy.gif" alt="Ститч" width="150">
+    </div><br>
+
 
     
     <!-- index.html (Ваша текущая страница) -->
@@ -120,7 +128,7 @@
         <center>
             <br><h2>Доп игрушка № 1</h2><br><br>
         </center>
-        <div class="container">
+        <div class="row-container">
         <input class = "text" id="txt1">
         <label class = "text" id="txt_label">интересная фигня</label>
         </div>
@@ -177,20 +185,22 @@
                 <h3>Калькулятор 2</h3>
             </center>
             <div><br>
-                <label class = "text">R<sub>a</sub>:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2-2-1">
-                <select id="unit-select_2_-ra" class="clck">
-                    <option value="Ом" class="clck">Ом</option>
-                    <option value="кОм" class="clck">кОм</option>
-                    <option value="МОм" class="clck">МОм</option>
+                <label class = "text">f:</label>
+                <input class = "number" type="number" style="margin-left:20px" id="dop_2-2-1">
+                <select id="unit-select_2_-f" class="clck">
+                    <option value="Гц" class="clck">Гц</option>
+                    <option value="кГц" class="clck">кГц</option>
+                    <option value="МГц" class="clck">МГц</option>
                 </select>
                 <br><br>
-                <label class = "text">R<sub>b</sub>:</label>
+                <label class = "text">D:</label>
                 <input class = "number" type="number" style="margin-left:10px" id="dop_2-2-2">
-                <select id="unit-select_2_-rb" class="clck">
-                    <option value="Ом" class="clck">Ом</option>
-                    <option value="кОм" class="clck">кОм</option>
-                    <option value="МОм" class="clck">МОм</option>
+                <br><br>
+                <label class = "text">C:</label>
+                <input class = "number" type="number" style="margin-left:10px" id="dop_2-2-3">
+                <select id="unit-select_2_-c" class="clck">
+                    <option value="нФ" class="clck">нФ</option>
+                    <option value="пФ" class="clck">пФ</option>
                 </select>
                 <br><br>
                 <button onclick="calc2()" id="btn_dop_2-2" class="bt">Рассчитать</button><br>

@@ -5,7 +5,16 @@
     background: linear-gradient(135deg, #f5f7fa 0%, #8215bc 100%);
 } */
 
+.row-container {
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between;
+    gap: 10px; 
+}
+
 .container{
+    box-sizing: border-box;
+    padding: 5px 20px;
     position: fixed;
     top: 0;
     left: 0;
@@ -30,6 +39,7 @@ body {
   font-family: "Marck Script", cursive;
   font-weight: 400;
   font-style: normal;
+  font-size: 26px;
   transition: all 0.3s ease; 
 }
 
@@ -62,7 +72,7 @@ body[data-theme="sunset"] {
 }
 
 .card {
-    width: 800px;
+    width: 1200px;
     padding: 20px;
     border-radius: 12px;
     border-color: #f5f7fa;

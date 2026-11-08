@@ -322,6 +322,10 @@ function calc(){
         document.querySelector("#dop_2_label").textContent = "Заполните все поля.";
         return;
     }
+    if (Ra <= 0 || Rb <= 0 || C <= 0) {
+        document.querySelector("#dop_2_label").textContent = "Резисторы и ёмкость должны быть положительными.";
+        return;
+    }
     // 3. Переводим резистор Ra в Омы
     if (unitRa.value === "кОм") {
         Ra = Ra * 1000;
@@ -344,7 +348,6 @@ function calc(){
     let C_farads = C * multiplierC;
     // 6. Считаем частоту, R1, R2 по стандартной формуле NE555
     let f = 1.44 / ((Ra + 2 * Rb) * C_farads);
-    let D = 0.7;
     // Форматируем вывод частоты (если герц очень много, можно перевести в кГц)
     let resultText = "";
     if (f >= 1000) {
@@ -358,36 +361,49 @@ function calc(){
 };
 
 function calc2(){
-    let text_2_Ra = document.querySelector("#dop_2-2-1");
-    let text_2_Rb = document.querySelector("#dop_2-2-2");
+    let text_2_f = document.querySelector("#dop_2-2-1");
+    let text_2_d = document.querySelector("#dop_2-2-2");
+    let text_2_c = document.querySelector("#dop_2-2-3");
 
-    let unit_2_Ra = document.querySelector("#unit-select_2_-ra");
-    let unit_2_Rb = document.querySelector("#unit-select_2_-rb");
+    let unit_2_f = document.querySelector("#unit-select_2_-f");
+    let unit_2_c = document.querySelector("#unit-select_2_-c");
 
-    let Ra2 = parseFloat(text_2_Ra.value);
-    let Rb2 = parseFloat(text_2_Rb.value);
+    let f2 = parseFloat(text_2_f.value);
+    let d2 = parseFloat(text_2_d.value);
+    let c2 = parseFloat(text_2_c.value);
 
-    if (isNaN(Ra2) || isNaN(Rb2)) {
+    if (isNaN(f2) || isNaN(d2) || isNaN(c2)) {
         document.querySelector("#dop_2_label-2").textContent = "Заполните все поля.";
         document.querySelector("#dop_2_label-2_2").textContent = "Заполните все поля.";
         return;
     }
-    // Переводим резистор Ra в Омы
-    if (unit_2_Ra.value === "кОм") {
-        Ra2 = Ra2 * 1000;
-    } else if (unit_2_Ra.value === "МОм") {
-        Ra2 = Ra2 * 1000000;
+    if (f2 <= 0 || d2 <= 0 || c2 <= 0) {
+        document.querySelector("#dop_2_label-2").textContent = "Частота, скважность, ёмкость должны быть положительными.";
+        document.querySelector("#dop_2_label-2_2").textContent = "Частота, скважность, ёмкость должны быть положительными.";
+        return;
     }
-    // Переводим резистор Rb в Омы
-    if (unit_2_Rb.value === "кОм") {
-        Rb2 = Rb2 * 1000;
-    } else if (unit_2_Rb.value === "МОм") {
-        Rb2 = Rb2 * 1000000;
+    if (d2 <= 50 || d2 >= 100) {
+        document.querySelector("#dop_2_label-2").textContent = "Скважность должна быть больше 50%.";
+        document.querySelector("#dop_2_label-2_2").textContent = "Скважность должна быть больше 50%.";
+        return;
     }
+    // Переводим резистор f в Гц
+    if (unit_2_f.value === "кГц") {
+        f2 = f2 * 1000;
+    } else if (unit_2_f.value === "МГц") {
+        f2 = f2 * 1000000;
+    }
+    // Переводим емкость C в Фарады
+    let multiplierC2 = 1;
+    if (unit_2_c.value === "нФ") {
+        multiplierC2 = 1e-9;  
+    } else if (unit_2_c.value === "пФ") {
+        multiplierC2 = 1e-12; 
+    }
+    let C2 = c2 * multiplierC2;
     // Считаем частоту, R1, R2 по стандартной формуле NE555
-    let D = 0.7;
-    let R1 = (2 * D - 1) * (Ra2 + 2 * Rb2);
-    let R2 = (1 - D) * (Ra2 + 2 * Rb2);
+    let R1 = 1.44 * (2 * d2 / 100 - 1) / (f2 * C2);
+    let R2 = 1.44 * (1 - d2 / 100) / (f2 * C2);
     // Форматируем вывод 
     let resultText1 = "";
     if (R1 >= 1000) {
@@ -420,6 +436,10 @@ function calc3(){
         document.querySelector("#dop_2_label-3").textContent = "Заполните все поля.";
         return;
     }
+    if ((R12 <= 0) || (R22 <= 0)) {
+        document.querySelector("#dop_2_label-3").textContent = "Резисторы должны быть положительными.";
+        return;
+    }
     // Переводим резистор R1 в Омы
     if (unit_2_R1.value === "кОм") {
         R12 = R12 * 1000;
@@ -443,25 +463,22 @@ function calc3(){
 
 
 const calcSelect = document.getElementById('calc-select');
-function updateCalcVisibility(selectedCalc) {
-    const blockFrequency = document.getElementById('calc-block-frequency');
-    const blockResistors = document.getElementById('calc-block-resistors');
-    const blockDutyCycle = document.getElementById('calc-block-dutyCycle');
-        
-    if (blockFrequency) blockFrequency.style.display = 'none';
-    if (blockResistors) blockResistors.style.display = 'none';
-    if (blockDutyCycle) blockDutyCycle.style.display = 'none';
 
-    if (selectedCalc === 'frequency' && blockFrequency) {
-        blockFrequency.style.display = 'block';
-    } 
-    else if (selectedCalc === 'resistors' && blockResistors) {
-        blockResistors.style.display = 'block';
-    } 
-    else if (selectedCalc === 'dutyCycle') {
-        blockDutyCycle.style.display = 'block';
-    }
+// 
+const blocks = [
+    { id: 'frequency', element: document.getElementById('calc-block-frequency') },
+    { id: 'resistors', element: document.getElementById('calc-block-resistors') },
+    { id: 'dutyCycle', element: document.getElementById('calc-block-dutyCycle') }
+];
+
+function updateCalcVisibility(selectedCalc) {
+    blocks.forEach(block => {
+        if (block.element) {
+            block.element.style.display = block.id === selectedCalc ? 'block' : 'none';
+        }
+    });
 }
+
 calcSelect.addEventListener('change', (event) => {
   const selectedCalc = event.target.value;
   document.body.setAttribute('data-calc', selectedCalc);
