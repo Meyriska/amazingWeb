@@ -1,252 +1,502 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=1200">
-    <title>nanocat</title>
+// Здесь переменные и условные операторы чуть-чуть
+/* 
+let n = 100;
+let online = true;
+let user = prompt(`Введи что-то`);
+let age = 0;
+let name = ``;
+let married = false;
+
+console.log(typeof n);
+console.log(`i like pizza`);
+console.log(`You are online: ${online}`);
+let user_data = user.split(`,`);
+console.log(`Мое имя ${user_data[0]}, возраст ${user_data[1]}, зп ${user_data[2]}`)
+console.log(user_data)
+
+if (user_data[2] >= 3000 && user_data[1] >= 30 && user_data[0]==`Петя`) {
+    console.log(`Поздравлякаю тебя🎉🎉🎉`);
+}
+else if (user_data[0]==`Петя`) {
+    console.log(`Ноу,Ноу,Ноооу,Мистер Фиш`);
+}
+else {
+    console.log(`печалька😭`);
+}
+ */
+
+// алерты
+/*
+window.alert(`This is an alert`);
+window.alert(`I like pizza!`); 
+*/
+
+// знакомство с textContent
+/* 
+document.getElementById("myH1").textContent = `Hello`;
+document.getElementById("p1").textContent = Math.sqrt(36);
+document.getElementById("p2").textContent = `I like pizza ${100} times`;
+ */
+
+// document.getElementById("p3").textContent = `ты ввёл или ввела ${user}`;
+
+//  чуть-чуть арифметических операторв
+/* 
+let students = 30;
+students = students ** 2; 
+students -= 2;
+students --;
+students ++;
+console.log(students) 
+*/
+
+// Находим выпадающий список
+const themeSelect = document.getElementById('theme-select');
+themeSelect.addEventListener('change', (event) => {
+  const selectedTheme = event.target.value;
+  document.body.setAttribute('data-theme', selectedTheme);
+  localStorage.setItem('user-theme', selectedTheme);
+});
+
+const savedTheme = localStorage.getItem('user-theme');
+if (savedTheme) {
+  document.body.setAttribute('data-theme', savedTheme);
+  themeSelect.value = savedTheme; // Меняем выбранную опцию в списке
+}
+
+
+
+// чуть-чуть работа с html и инпутом
+
+document.getElementById("submit").onclick = function(){
+    un = document.getElementById("text_input").value;
+    document.getElementById("p2").textContent = `пользователь ${un}`;
+    console.log(un);
+    document.getElementById("H2").textContent = `Привет ${un}`
+};
+
+// type conversation (Number, String, Boolean)
+/* 
+let age;
+age = 25;
+age = Number(age);
+age +=1;
+console.log(age, typeof age);
+ */
+
+// const
+/* 
+const PI = 3.14;
+let h;
+h = PI
+console.log(h)
+ */
+
+// project counter program
+
+const decreaseBt = document.getElementById("decrease_bt");
+const increaseBt = document.getElementById("increase_bt");
+const resetBt = document.getElementById("reset_bt");
+const countLabel = document.getElementById("pr1_label_1");
+let count = 0;
+increaseBt.onclick = function(){
+    count++;
+    countLabel.textContent = count;
+};
+decreaseBt.onclick = function(){
+    count--;
+    countLabel.textContent = count;
+};
+resetBt.onclick = function(){
+    count = 0;
+    countLabel.textContent = count;
+};
+
+
+// math
+/* 
+console.log(Math.PI);
+console.log(Math.E);
+console.log(Math.round(3.21));
+console.log(Math.ceil(3.00001));
+console.log(Math.floor(3.9999));
+console.log(Math.trunc(3.56));
+console.log(Math.pow(2, 5));
+console.log(Math.sqrt(25));
+console.log(Math.log(25));
+console.log(Math.sin(Math.PI/2));
+console.log(Math.cos(25));
+console.log(Math.tan(25));
+console.log(Math.abs(-25));
+console.log(Math.sign(0));
+console.log(Math.max(25, 45, 100));
+console.log(Math.min(-25, -45, -100));
+ */
+
+// Math.random()
+/* 
+const min = 50;
+const max = 100;
+let randomNum = Math.floor(Math.random() * (max - min)) + min;
+console.log(randomNum);
+ */
+
+// project random
+
+const roll = document.getElementById("roll");
+const interesting_thing = document.getElementById("pr2_label_1");
+const min = 1;
+const max = 6;
+let randomNum;
+
+roll.onclick = function(){
+    randomNum = Math.floor(Math.random() * max) + min;
+    interesting_thing.textContent = randomNum;
+};
+
+// условный оператор || - или, && - и, ! - не
+/* 
+let x = 0;
+let y = 0;
+if (x == 0 && y == 1) {
+    console.log(x, y)
+}
+else {
+    console.log(`вот такая фигня, собачка`)
+};
+ */
+
+// циклы на паре
+/* 
+console.log(`циклыыы`)
+for (let i = 0; i < 5; i++) {
+    console.log(i);
+};
+console.log(`Конец цикла`);
+
+let lunch = [100, 120, 350, 200]
+
+let result = 0;
+for (let i = 0; i < lunch.length; i++) {
+    console.log(lunch[i]);
+    result += lunch[i]
+};
+console.log(`Конец цикла, итого: ${result}`);
+
+for (let item of lunch) {
+    console.log(item);
+};
+
+
+let lunch_pr  = prompt(`перечисли ланч типа чикен:250,чикен:500`);
+let lunch_name = [];
+let lunch_price = [];
+lunch_pr = lunch_pr.split(`,`);
+console.log(lunch_pr);
+for (let [index, item] of lunch_pr.entries()){
+    let lunch_pr_1 = item.split(`:`);
+    console.log(lunch_pr_1);
+    lunch_name.push(lunch_pr_1[0]);         
+    lunch_price.push(Number(lunch_pr_1[1]));
+
+};
+console.log("Имена:", lunch_name);
+console.log("Цены:", lunch_price);
+
+ */
+
+
+
+// checked property
+
+const CheckBox = document.getElementById("checkBox");
+const stitchBtn = document.getElementById("stitchBtn");
+const toothlessBtn = document.getElementById("toothlessBtn");
+const minionBtn = document.getElementById("minionBtn");
+const SbmBtn = document.getElementById("SbmBtn");
+const subResult = document.getElementById("subResult");
+const Result = document.getElementById("Result");
+ 
+SbmBtn.onclick = function(){
+    if(CheckBox.checked){
+        subResult.textContent = `Куда тыкаешь?`
+        if(stitchBtn.checked){
+            Result.textContent = `Алоха! Эксперимент 626 активен! Создатель одобряет! И Охана - значит семья, где никого не бросают и не забывают. Ты моя Охана!`;
+        }
+        else if(toothlessBtn.checked){
+            Result.textContent = `Ты теперь Ночная Фурия. Твоя главная задача - выглядеть как грозный альфа-самец и кушать много вкусняшек!`;
+        }
+        else if(minionBtn.checked){
+            Result.textContent = `Bello! Кинг Боб банана пука-ка! Тю ли ля ла бэ-э-э-на-на! Короче, твой план захвата мира идеален, даже если ты кушаешь сейчас чипсики на диване.`;
+        }
+        else{
+            Result.textContent = `Тыкни что-то`;
+        }
+    }
+    else{
+        subResult.textContent = `Ты не тыкнул... ( -_- )( -_- )( -_- )`;
+    };
+
+}; 
+
+
+// functions
+
+let a = 10;
+let b = 4;
+function whatever(a, b){
+    console.log(`hello ${a*b}`);
+};
+
+whatever();
+whatever(a, b);
+
+let textBtn = document.querySelector("#txt_btn");
+let textInput = document.querySelector("#txt1");
+// let textInput_el = document.getElementById("txt1");
+let txt_label = document.querySelector("#txt_label");
+
+textBtn.onclick = onBtnClick;
+let counter = 0;
+
+function onBtnClick(event){
+    if (counter == 0){
+        console.log(`Хорошо жмякнул`);
+        console.log(textInput.value);
+        txt_label.textContent = `Ты зачем напечатал ${textInput.value}?`;
+        textBtn.innerText = `тык ещё раз`;
+        counter++;
+        console.log(counter);
+    }
+    else if(counter == 1){
+        console.log(`Убрал пробелы`);
+        console.log(textInput.value.replaceAll(" ", ""));
+        txt_label.textContent = `Убрал пробелы`;
+        // textInput.value.trim();
+        textInput.value = textInput.value.replaceAll(" ", "");
+        counter++;
+        console.log(counter)
+       
+    }
+    else if(counter == 2){
+        console.log(`Стираю твоё жмяканье`);
+        console.log(textInput.value);
+        txt_label.textContent = `Я стёр твоё ${textInput.value}`;
+        textBtn.innerText = `низзя теперь`;
+        // textInput.value.trim();
+        textInput.value = "";
+        counter++;
+        console.log(counter)
+    }
+    else if(counter == 3){
+        console.log(`Низзя`);
+        console.log(textInput.value);
+        txt_label.textContent = `Сказала же, что низзя`;
+        textBtn.innerText = `низзя теперь`;
+        // textInput.value.trim();
+        textInput.value = "";
+        console.log(counter)
+       
+    };
+};
+
+
+
+// доп игрушка 2
+
+function calc(){
+    // 1. Находим текстовые поля ввода
+    let textRa = document.querySelector("#dop_2_1");
+    let textRb = document.querySelector("#dop_2_2");
+    let textC = document.querySelector("#dop_2_3");
+    // 2. Находим новые уникальные селекторы единиц измерения
+    let unitRa = document.querySelector("#unit-select-ra");
+    let unitRb = document.querySelector("#unit-select-rb");
+    let unitC = document.querySelector("#unit-select-c");
+    // Читаем числа из полей ввода
+    let Ra = parseFloat(textRa.value);
+    let Rb = parseFloat(textRb.value);
+    let C = parseFloat(textC.value);
+    // Если какое-то поле не заполнено, прекращаем расчет
+    if (isNaN(Ra) || isNaN(Rb) || isNaN(C)) {
+        document.querySelector("#dop_2_label").textContent = "Заполните все поля.";
+        return;
+    }
+    if (Ra <= 0 || Rb <= 0 || C <= 0) {
+        document.querySelector("#dop_2_label").textContent = "Резисторы и ёмкость должны быть положительными.";
+        return;
+    }
+    // 3. Переводим резистор Ra в Омы
+    if (unitRa.value === "кОм") {
+        Ra = Ra * 1000;
+    } else if (unitRa.value === "МОм") {
+        Ra = Ra * 1000000;
+    }
+    // 4. Переводим резистор Rb в Омы
+    if (unitRb.value === "кОм") {
+        Rb = Rb * 1000;
+    } else if (unitRb.value === "МОм") {
+        Rb = Rb * 1000000;
+    }
+    // 5. Переводим емкость C в Фарады
+    let multiplierC = 1;
+    if (unitC.value === "нФ") {
+        multiplierC = 1e-9;  
+    } else if (unitC.value === "пФ") {
+        multiplierC = 1e-12; 
+    }
+    let C_farads = C * multiplierC;
+    // 6. Считаем частоту, R1, R2 по стандартной формуле NE555
+    let f = 1.44 / ((Ra + 2 * Rb) * C_farads);
+    // Форматируем вывод частоты (если герц очень много, можно перевести в кГц)
+    let resultText = "";
+    if (f >= 1000) {
+        resultText = `${(f / 1000).toFixed(2)} кГц`;
+    } else {
+        resultText = `${f.toFixed(2)} Гц`;
+    }
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-
-
-
     
-    <div class="container">
-        <div class="left-text">
-            <label for="theme-select">Theme:</label>
-            <select id="theme-select" class="clck">
-                <option value="purple" class="clck">Purple</option>
-                <option value="dark" class="clck">Dark</option>
-                <option value="sunset" class="clck">Sunset</option>
-            </select>
-        </div>
+    document.querySelector("#dop_2_label").textContent = resultText;
+};
 
-        <div class="right-text">
-            <label>username:</label>
-            <input id="text_input">
-            <button id="submit" class="clck">принять</button>
-            <p id="p2"></p>
-        </div>
-    </div><br><br><br><br>
+function calc2(){
+    let text_2_f = document.querySelector("#dop_2-2-1");
+    let text_2_d = document.querySelector("#dop_2-2-2");
+    let text_2_c = document.querySelector("#dop_2-2-3");
 
-    <div class="row-container">
-        <img src="gif_files\stitch_with_toy.gif" alt="Ститч" width="150">
-        <img src="gif_files\stitch_and_toy.gif" alt="Ститч" width="150">
-        <h1 id="H2">Вечер в хату</h1>
-        <img src="gif_files\stitch_and_toy.gif" alt="Ститч" width="150">
-        <img src="gif_files\stitch_with_toy.gif" alt="Ститч" width="150">
-    </div><br>
+    let unit_2_f = document.querySelector("#unit-select_2_-f");
+    let unit_2_c = document.querySelector("#unit-select_2_-c");
 
+    let f2 = parseFloat(text_2_f.value);
+    let d2 = parseFloat(text_2_d.value);
+    let c2 = parseFloat(text_2_c.value);
 
-    
-    <!-- index.html (Ваша текущая страница) -->
-    <br>
-    <a href="page2.html" style="text-decoration: none;">
-        <strong><label style="cursor: pointer; color: rgb(223, 0, 145); font-size:30px;">--> жми для игры в HANGED MAN <--</label></strong>
-        <img src="gif_files\stitch_with_toy.gif" alt="Ститч" width="100">
-    </a>
-    <br><br>
+    if (isNaN(f2) || isNaN(d2) || isNaN(c2)) {
+        document.querySelector("#dop_2_label-2").textContent = "Заполните все поля.";
+        document.querySelector("#dop_2_label-2_2").textContent = "Заполните все поля.";
+        return;
+    }
+    if (f2 <= 0 || d2 <= 0 || c2 <= 0) {
+        document.querySelector("#dop_2_label-2").textContent = "Частота, скважность, ёмкость должны быть положительными.";
+        document.querySelector("#dop_2_label-2_2").textContent = "Частота, скважность, ёмкость должны быть положительными.";
+        return;
+    }
+    if (d2 <= 50 || d2 >= 100) {
+        document.querySelector("#dop_2_label-2").textContent = "Скважность должна быть больше 50%.";
+        document.querySelector("#dop_2_label-2_2").textContent = "Скважность должна быть больше 50%.";
+        return;
+    }
+    // Переводим резистор f в Гц
+    if (unit_2_f.value === "кГц") {
+        f2 = f2 * 1000;
+    } else if (unit_2_f.value === "МГц") {
+        f2 = f2 * 1000000;
+    }
+    // Переводим емкость C в Фарады
+    let multiplierC2 = 1;
+    if (unit_2_c.value === "нФ") {
+        multiplierC2 = 1e-9;  
+    } else if (unit_2_c.value === "пФ") {
+        multiplierC2 = 1e-12; 
+    }
+    let C2 = c2 * multiplierC2;
+    // Считаем частоту, R1, R2 по стандартной формуле NE555
+    let R1 = 1.44 * (2 * d2 / 100 - 1) / (f2 * C2);
+    let R2 = 1.44 * (1 - d2 / 100) / (f2 * C2);
+    // Форматируем вывод 
+    let resultText1 = "";
+    if (R1 >= 1000) {
+        resultText1 = `${(R1 / 1000).toFixed(2)} кОм`;
+    } else {
+        resultText1 = `${R1.toFixed(2)} Ом`;
+    }
+    let resultText2 = "";
+    if (R2 >= 1000) {
+        resultText2 = `${(R2 / 1000).toFixed(2)} кОм`;
+    } else {
+        resultText2 = `${R2.toFixed(2)} Ом`;
+    }
+        
+    document.querySelector("#dop_2_label-2").textContent = resultText1;
+    document.querySelector("#dop_2_label-2_2").textContent = resultText2;
+};
 
-    
+function calc3(){
+    let text_2_R1 = document.querySelector("#dop_2-3-1");
+    let text_2_R2 = document.querySelector("#dop_2-3-2");
 
-<!-- проекты -->
+    let unit_2_R1 = document.querySelector("#unit-select_2_-r1");
+    let unit_2_R2 = document.querySelector("#unit-select_2_-r2");
 
+    let R12 = parseFloat(text_2_R1.value);
+    let R22 = parseFloat(text_2_R2.value);
 
-    <div id="bt_container" class="card">
-        <h2>Игрушка № 1</h2>
-        <label id="pr1_label_1">0</label>
-        <br>
-        <button id="decrease_bt" class="bt">уменьшить</button>
-        <button id="reset_bt" class="bt">сброс</button>
-        <button id="increase_bt" class="bt">увеличить</button>
-        <br><br>
-    </div>
-
-
-    <div id="roll_container" class="card">
-        <h2>Игрушка № 2</h2>
-        <button id="roll" class="bt">крутани</button><br>
-        <br><br><label id="pr2_label_1">интересная фигня</label>
-    </div><br>
-
-
-    <div id="pr3_container" class="card"><br>
-        <center>
-            <br><h2>Игрушка № 3</h2><br><br>
-            <img src="gif_files\catti.gif" alt="Технические шоколадки">
-            <img src="gif_files\girl.gif" alt="Технические шоколадки">
-            <img src="gif_files\catti.gif" alt="Технические шоколадки">
-            <img src="gif_files\girl.gif" alt="Технические шоколадки">
-            <img src="gif_files\catti.gif" alt="Технические шоколадки">
-            <img src="gif_files\girl.gif" alt="Технические шоколадки">
-            <br><br>
-        </center>
-        <input type="checkBox" id="checkBox">
-        <label for="CheckBox">Тыкнул?</label><br>
-
-        <br>
-        <input type="radio" id="stitchBtn" name="card" style=" vertical-align: middle">
-        <label for="stitchBtn" style=" vertical-align: middle">Ститч</label>
-        <div class="right-text">
-            <img src="gif_files\stitch_with_toy.gif" alt="Ститч" width="100">
-            <img src="gif_files\stitch_and_pillow.gif" alt="Ститч" width="100">
-            <img src="gif_files\stitch_and_toy.gif" alt="Ститч" width="100">
-        </div>
-        <br>
-        <input type="radio" id="toothlessBtn" name="card">
-        <label for="toothlessBtn">Беззубик</label>
-        <div class="right-text">
-            <img src="gif_files\toothless.gif" alt="Ститч" width="100">
-            <img src="gif_files\toothless_tongue.gif" alt="Ститч" width="100">
-            <img src="gif_files\toothless-dragon-toothless.gif" alt="Ститч" width="100">
-        </div>        
-        <br>
-        <input type="radio" id="minionBtn" name="card">
-        <label for="minionBtn">Миньон</label>
-        <div class="right-text">
-            <img src="gif_files\minions-banana.gif" alt="Ститч" width="100">
-            <img src="gif_files\minion_durit.gif" alt="Ститч" width="100">
-            <img src="gif_files\minions_heart.gif" alt="Ститч" width="100">
-        </div>
-        <br>
-
-        <br><button type="submit" id="SbmBtn" class="bt">Принять</button>
-
-        <p id="subResult"></p>
-        <p id="Result"></p>
-    <br></div>
-  
-    
-    <br><div class="card">
-        <center>
-            <br><h2>Доп игрушка № 1</h2><br><br>
-        </center>
-        <div class="row-container">
-        <input class = "text" id="txt1">
-        <label class = "text" id="txt_label">интересная фигня</label>
-        </div>
-        <br><button onclick="onBtnClick()" id="txt_btn" class="bt">Жмякни</button>
-    </div><br>
-
-    <div class="card">
-            <center>
-                <br><h2>Доп игрушка № 2</h2>
-                <h3>Расчёт NC555</h3><br><br>
-            </center>
-        <select id="calc-select" class="clck">
-                <option value="frequency" class="clck">Частота</option>
-                <option value="resistors" class="clck">Резисторы</option>
-                <option value="dutyCycle" class="clck">Коэффициент заполнения импульсов</option>
-        </select>
-
-        <div id="calc-block-frequency">
-            <center>
-                <h3>Калькулятор 1</h3>
-            </center>
-            <div><br>
-                <label class = "text" id="dop_2_1_label">R<sub>a</sub>:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2_1">
-                <select id="unit-select-ra" class="clck">
-                    <option value="Ом" class="clck">Ом</option>
-                    <option value="кОм" class="clck">кОм</option>
-                    <option value="МОм" class="clck">МОм</option>
-                </select>
-                <br><br>
-                <label class = "text" id="dop_2_2_label">R<sub>b</sub>:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2_2">
-                <select id="unit-select-rb" class="clck">
-                    <option value="Ом" class="clck">Ом</option>
-                    <option value="кОм" class="clck">кОм</option>
-                    <option value="МОм" class="clck">МОм</option>
-                </select>
-                <br><br>
-                <label class = "text" id="dop_2_3_label">C:</label>
-                <input class = "number" type="number" style="margin-left:25px" id="dop_2_3">
-                <select id="unit-select-c" class="clck">
-                    <option value="нФ" class="clck">нФ</option>
-                    <option value="пФ" class="clck">пФ</option>
-                    </select>
-                <br><br>
-                <button onclick="calc()" id="btn_dop_2" class="bt">Рассчитать</button><br>
-                <div class="expression">
-                    <label class = "text" id="dop_2_label"></label><br>
-                </div>
-            </div>
-        </div>
-        <div id="calc-block-resistors">
-            <center>
-                <h3>Калькулятор 2</h3>
-            </center>
-            <div><br>
-                <label class = "text">f:</label>
-                <input class = "number" type="number" style="margin-left:20px" id="dop_2-2-1">
-                <select id="unit-select_2_-f" class="clck">
-                    <option value="Гц" class="clck">Гц</option>
-                    <option value="кГц" class="clck">кГц</option>
-                    <option value="МГц" class="clck">МГц</option>
-                </select>
-                <br><br>
-                <label class = "text">D:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2-2-2">
-                <br><br>
-                <label class = "text">C:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2-2-3">
-                <select id="unit-select_2_-c" class="clck">
-                    <option value="нФ" class="clck">нФ</option>
-                    <option value="пФ" class="clck">пФ</option>
-                </select>
-                <br><br>
-                <button onclick="calc2()" id="btn_dop_2-2" class="bt">Рассчитать</button><br>
-                <div class="expression">
-                    <label class = "text" id="dop_2_label-2"></label><br>
-                </div>
-                <div class="expression">
-                    <label class = "text" id="dop_2_label-2_2"></label><br>
-                </div>
-            </div>
-        </div>
-        <div id="calc-block-dutyCycle">
-            <center>
-                <h3>Калькулятор 3</h3>
-            </center>
-            <div><br>
-                <label class = "text">R<sub>1</sub>:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2-3-1">
-                <select id="unit-select_2_-r1" class="clck">
-                    <option value="Ом" class="clck">Ом</option>
-                    <option value="кОм" class="clck">кОм</option>
-                    <option value="МОм" class="clck">МОм</option>
-                </select>
-                <br><br>
-                <label class = "text">R<sub>2</sub>:</label>
-                <input class = "number" type="number" style="margin-left:10px" id="dop_2-3-2">
-                <select id="unit-select_2_-r2" class="clck">
-                    <option value="Ом" class="clck">Ом</option>
-                    <option value="кОм" class="clck">кОм</option>
-                    <option value="МОм" class="clck">МОм</option>
-                </select>
-                <br><br>
-                <button onclick="calc3()" id="btn_dop_2-3" class="bt">Рассчитать</button><br>
-                <div class="expression">
-                    <label class = "text" id="dop_2_label-3"></label><br>
-                </div>
-            </div>
-        </div>
-    </div><br><br>
-
-    
-    
-    
-    <script src="index.js">   
-    </script>
+    if (isNaN(R12) || isNaN(R22)) {
+        document.querySelector("#dop_2_label-3").textContent = "Заполните все поля.";
+        return;
+    }
+    if ((R12 <= 0) || (R22 <= 0)) {
+        document.querySelector("#dop_2_label-3").textContent = "Резисторы должны быть положительными.";
+        return;
+    }
+    // Переводим резистор R1 в Омы
+    if (unit_2_R1.value === "кОм") {
+        R12 = R12 * 1000;
+    } else if (unit_2_R1.value === "МОм") {
+        R12 = R12 * 1000000;
+    }
+    // Переводим резистор R2 в Омы
+    if (unit_2_R2.value === "кОм") {
+        R22 = R22 * 1000;
+    } else if (unit_2_R2.value === "МОм") {
+        R22 = R22 * 1000000;
+    }
+    // Считаем D по стандартной формуле NE555
+    let D = (R12 + R22) / (R12 + 2 * R22) * 100;
+    // Форматируем вывод 
+    let resultText = "";
+    resultText = `${D.toFixed(2)} %`;
+       
+    document.querySelector("#dop_2_label-3").textContent = resultText;
+};
 
 
-</body>
-</html>
+const calcSelect = document.getElementById('calc-select');
+
+// 
+const blocks = [
+    { id: 'frequency', element: document.getElementById('calc-block-frequency') },
+    { id: 'resistors', element: document.getElementById('calc-block-resistors') },
+    { id: 'dutyCycle', element: document.getElementById('calc-block-dutyCycle') }
+];
+
+function updateCalcVisibility(selectedCalc) {
+    blocks.forEach(block => {
+        if (block.element) {
+            block.element.style.display = block.id === selectedCalc ? 'block' : 'none';
+        }
+    });
+}
+
+calcSelect.addEventListener('change', (event) => {
+  const selectedCalc = event.target.value;
+  document.body.setAttribute('data-calc', selectedCalc);
+  localStorage.setItem('user-calc', selectedCalc);
+  updateCalcVisibility(selectedCalc);
+});
+const savedCalc = localStorage.getItem('user-calc');
+if (savedCalc) {
+  document.body.setAttribute('data-calc', savedCalc);
+  calcSelect.value = savedCalc; // Меняем выбранную опцию в списке
+  updateCalcVisibility(savedCalc);
+}
+else {
+    updateCalcVisibility(calcSelect.value);
+};
+
+
+
+
+
+
